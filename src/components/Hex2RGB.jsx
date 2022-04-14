@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import {useState} from "react";
 
 export default function Hex2RGB() {
@@ -10,30 +9,32 @@ export default function Hex2RGB() {
     background: hex
   }
 
-  const hexToRgb = input => {
-    const rule = /^#([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i;
-    return rule.exec(input) ? {
-      r: parseInt(rule[1], 16),
-      g: parseInt(rule[2], 16),
-      b: parseInt(rule[3], 16)
+  const hexToRgb = (input) => {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(input);
+    return result ? {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16)
     } : null;
   }
 
   const handleHexChange = e => {
     if(hexToRgb(e.target.value)) {
         setHex(e.target.value)
-        setRGB(hexToRgb(e.target.value).r)
-      console.log(hexToRgb(e.target.value).r)
+        setRGB(`rgb(${hexToRgb(e.target.value).r}, ${hexToRgb(e.target.value).g}, ${hexToRgb(e.target.value).b})`)
     } else {
       setHex('#ff0000')
+      setRGB('Ошибка')
     }
 
   }
 
   return (
-    <div style={divStyle}>
-      <input type="text" id="input" onChange={handleHexChange} />
-      <div className="rbgValue">rgb({rgb})</div>
+    <div className="wrapper" style={divStyle}>
+      <div className="wrapper--inner">
+        <input type="text" id="input" onChange={handleHexChange} />
+        <div className="rbgValue">{rgb}</div>
+      </div>
     </div>
   );
 }
