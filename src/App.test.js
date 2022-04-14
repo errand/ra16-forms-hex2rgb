@@ -3,6 +3,6 @@ import App from './App';
 
 test('Renders Cart title', () => {
   render(<App />);
-  const linkElement = screen.getByText(/Change Password/i);
+  const linkElement = screen.getByTestId(/test/i);
   expect(linkElement).toBeInTheDocument();
 });

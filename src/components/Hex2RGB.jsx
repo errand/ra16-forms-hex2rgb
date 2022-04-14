@@ -30,7 +30,7 @@ export default function Hex2RGB() {
   }
 
   return (
-    <div className="wrapper" style={divStyle}>
+    <div className="wrapper" style={divStyle} data-testid="test">
       <div className="wrapper--inner">
         <input type="text" id="input" onChange={handleHexChange} />
         <div className="rbgValue">{rgb}</div>
